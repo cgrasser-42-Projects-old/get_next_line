@@ -6,7 +6,7 @@
 /*   By: cgrasser <cgrasser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 21:33:03 by cgrasser          #+#    #+#             */
-/*   Updated: 2024/11/16 15:51:56 by cgrasser         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:41:16 by cgrasser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		*(unsigned char *)(s + i) = '\0';
+		*(unsigned char *)(s + i) = 0;
 		i++;
 	}
 }
@@ -49,17 +49,13 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (to_return);
 }
 
-char	*ft_strchr(const char *string, int searchedChar )
+char	*ft_strchr(const char *str, int c)
 {
-	char	*str;
-
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
+	while (*str != c && *str)
 		str++;
-	if (*str == searchedChar)
-		return (str);
-	else
-		return (NULL);
+	if (*str == c)
+		return ((char *)str);
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -80,12 +76,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	j = 0;
-	while (s2[j] != 0)
-	{
-		result[i] = s2[j];
-		i++;
-		j++;
-	}
+	while (s2[j])
+		result[i++] = s2[j++];
 	result[total_size] = 0;
 	return (result);
 }
